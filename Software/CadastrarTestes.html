@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Resultados dos Testes</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
+        <h2 class="text-2xl font-bold mb-5">Registro de Resultados dos Testes</h2>
+        <form>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <label for="ph" class="block text-gray-700 mb-2">PH</label>
+                    <input type="text" id="ph" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite o valor do PH">
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <label for="viscosidade" class="block text-gray-700 mb-2">Viscosidade</label>
+                    <input type="text" id="viscosidade" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite a viscosidade">
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <label for="densidade" class="block text-gray-700 mb-2">Densidade</label>
+                    <input type="text" id="densidade" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite a densidade">
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <label for="ativo" class="block text-gray-700 mb-2">Ativo</label>
+                    <input type="text" id="ativo" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite o valor ativo">
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <label for="umidade" class="block text-gray-700 mb-2">Umidade</label>
+                    <input type="text" id="umidade" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite a umidade">
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <label for="ponto-fusao" class="block text-gray-700 mb-2">Ponto de Fusão</label>
+                    <input type="text" id="ponto-fusao" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite o ponto de fusão">
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <label for="substancias-estranhas" class="block text-gray-700 mb-2">Substâncias Estranhas</label>
+                    <input type="text" id="substancias-estranhas" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite as substâncias estranhas">
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <label for="observacoes" class="block text-gray-700 mb-2">Observações</label>
+                    <textarea id="observacoes" rows="4" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite suas observações"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="mt-6 w-full py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Cadastrar Resultados</button>
+        </form>
+    </div>
+</body>
+</html>

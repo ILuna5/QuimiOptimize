@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Resultados dos Testes</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-7xl">
+        <h2 class="text-2xl font-bold mb-5">Consulta de Resultados dos Testes</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-300">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 border-b">ID do Produto</th>
+                        <th class="px-4 py-2 border-b">PH</th>
+                        <th class="px-4 py-2 border-b">Viscosidade</th>
+                        <th class="px-4 py-2 border-b">Densidade</th>
+                        <th class="px-4 py-2 border-b">Ativo</th>
+                        <th class="px-4 py-2 border-b">Umidade</th>
+                        <th class="px-4 py-2 border-b">Ponto de Fusão</th>
+                        <th class="px-4 py-2 border-b">Substâncias Estranhas</th>
+                        <th class="px-4 py-2 border-b">Observações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-resultados">
+                    <!-- Linhas de resultados serão inseridas aqui -->
+                </tbody>
+            </table>
+        </div>
+        <button id="exportar" class="mt-6 w-full py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Exportar para Excel</button>
+    </div>
+
+    <script>
+        // Exemplo de dados dos resultados dos testes
+        const resultados = [
+            {
+                id: '001',
+                ph: '7',
+                viscosidade: '1000',
+                densidade: '1.2',
+                ativo: '15%',
+                umidade: '5%',
+                pontoFusao: '150°C',
+                substanciasEstranhas: '0.1%',
+                observacoes: 'Nenhuma'
+            },
+            {
+                id: '002',
+                ph: '6.5',
+                viscosidade: '950',
+                densidade: '1.1',
+                ativo: '10%',
+                umidade: '7%',
+                pontoFusao: '145°C',
+                substanciasEstranhas: '0.05%',
+                observacoes: 'Teste ok'
+            }
+        ];
+
+        // Inserindo os dados na tabela
+        const tabelaResultados = document.getElementById('tabela-resultados');
+        resultados.forEach(resultado => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-4 py-2 border-b">${resultado.id}</td>
+                <td class="px-4 py-2 border-b">${resultado.ph}</td>
+                <td class="px-4 py-2 border-b">${resultado.viscosidade}</td>
+                <td class="px-4 py-2 border-b">${resultado.densidade}</td>
+                <td class="px-4 py-2 border-b">${resultado.ativo}</td>
+                <td class="px-4 py-2 border-b">${resultado.umidade}</td>
+                <td class="px-4 py-2 border-b">${resultado.pontoFusao}</td>
+                <td class="px-4 py-2 border-b">${resultado.substanciasEstranhas}</td>
+                <td class="px-4 py-2 border-b">${resultado.observacoes}</td>
+            `;
+            tabelaResultados.appendChild(row);
+        });
+
+        // Função para exportar a tabela para Excel com formatação
+        document.getElementById('exportar').addEventListener('click', () => {
+            const wb = XLSX.utils.book_new();
+            const ws_data = [
+                [],
+                [],
+                ['QuimiOptimize'], // Título da tabela
+                ['ID do Produto', 'PH', 'Viscosidade', 'Densidade', 'Ativo', 'Umidade', 'Ponto de Fusão', 'Substâncias Estranhas', 'Observações'],
+                ...resultados.map(r => [r.id, r.ph, r.viscosidade, r.densidade, r.ativo, r.umidade, r.pontoFusao, r.substanciasEstranhas, r.observacoes])
+            ];
+
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+            // Ajustar a largura das colunas
+            ws['!cols'] = [
+                { wch: 15 },
+                { wch: 10 },
+                { wch: 15 },
+                { wch: 15 },
+                { wch: 10 },
+                { wch: 10 },
+                { wch: 15 },
+                { wch: 20 },
+                { wch: 25 }
+            ];
+
+            // Mesclar as células do título
+            ws['!merges'] = [{ s: { r: 2, c: 1 }, e: { r: 2, c: 9 } }];
+
+            // Adicionar bordas
+            const range = XLSX.utils.decode_range(ws['!ref']);
+            for (let R = range.s.r; R <= range.e.r; ++R) {
+                for (let C = range.s.c; C <= range.e.c; ++C) {
+                    const cell_address = { c: C, r: R };
+                    const cell_ref = XLSX.utils.encode_cell(cell_address);
+                    if (!ws[cell_ref]) ws[cell_ref] = {};
+                    if (!ws[cell_ref].s) ws[cell_ref].s = {};
+                    ws[cell_ref].s.border = {
+                        top: { style: "thin", color: { rgb: "000000" } },
+                        bottom: { style: "thin", color: { rgb: "000000" } },
+                        left: { style: "thin", color: { rgb: "000000" } },
+                        right: { style: "thin", color: { rgb: "000000" } }
+                    };
+                }
+            }
+
+            XLSX.utils.book_append_sheet(wb, ws, 'Resultados');
+            XLSX.writeFile(wb, 'resultadoTesteQuimiOptimize.xlsx');
+        });
+    </script>
+</body>
+</html>
