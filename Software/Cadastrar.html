@@ -9,17 +9,52 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
         <h2 class="text-2xl font-bold mb-5">Cadastro de Usuário</h2>
-        <form>
+        <form id="formCadastro">
             <div class="mb-4">
-                <label for="nome" class="block text-gray-700">Nome</label>
-                <input type="text" id="nome" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite seu nome">
+                <label for="Usuario" class="block text-gray-700">Nome de Usuário</label>
+                <input type="text" id="Usuario" name="Usuario" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite seu nome de usuário" required>
             </div>
             <div class="mb-4">
-                <label for="senha" class="block text-gray-700">Senha</label>
-                <input type="password" id="senha" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite sua senha">
+                <label for="Senha" class="block text-gray-700">Senha</label>
+                <input type="password" id="Senha" name="Senha" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite sua senha" required>
             </div>
             <button type="submit" class="w-full py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Cadastrar</button>
         </form>
+
+        <div id="mensagemCadastro" class="mt-4 text-red-500"></div>
     </div>
+
+    <script>
+        const formCadastro = document.getElementById('formCadastro');
+        const mensagemCadastro = document.getElementById('mensagemCadastro');
+
+        formCadastro.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const Usuario = document.getElementById('Usuario').value;
+            const Senha = document.getElementById('Senha').value;
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ Usuario, Senha })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Erro ao cadastrar usuário');
+                }
+
+                mensagemCadastro.textContent = data.message;
+            } catch (error) {
+                console.error('Erro ao cadastrar usuário:', error);
+                mensagemCadastro.textContent = 'Erro ao cadastrar usuário. Tente novamente mais tarde.';
+            }
+        });
+    </script>
 </body>
 </html>
