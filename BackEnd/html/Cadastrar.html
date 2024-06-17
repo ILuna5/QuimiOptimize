@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <link href="../css/syles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+        <h2 class="text-2xl font-bold mb-5">Cadastro de Usuário</h2>
+        <form id="formCadastro">
+            <div class="mb-4">
+                <label for="Usuario" class="block text-gray-700">Nome de Usuário</label>
+                <input type="text" id="Usuario" name="Usuario" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite seu nome de usuário" required>
+            </div>
+            <div class="mb-4">
+                <label for="Senha" class="block text-gray-700">Senha</label>
+                <input type="password" id="Senha" name="Senha" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite sua senha" required>
+            </div>
+            <button type="submit" class="w-full py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Cadastrar</button>
+        </form>
+
+        <div id="mensagemCadastro" class="mt-4 text-red-500"></div>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

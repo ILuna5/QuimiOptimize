@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produto</title>
+    <link href="../css/Produto.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+    
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-5">Cadastro de Produto</h2>
+        <form id="produtoForm">
+            <div class="bg-gray-100 p-6 rounded-lg mb-5 shadow-inner">
+                <div class="mb-4">
+                    <label for="Codigo" class="block text-gray-700 mb-2">ID do Produto</label>
+                    <input type="text" id="Codigo" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite o ID do produto">
+                </div>
+                <div class="mb-4">
+                    <label for="Produto" class="block text-gray-700 mb-2">Nome do Produto</label>
+                    <input type="text" id="Produto" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Digite o nome do produto">
+                </div>
+                <button type="submit" class="w-full py-2 px-4 bg-green-500 hover:bg-green-700 text-white font-bold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Cadastrar</button>
+            </div>
+        </form>
+        <div id="mensagemCadastro" class="mt-4 text-red-500"></div>
+    </div>
+    <script src="../js/Produto.js"></script>
+</body>
+</html>

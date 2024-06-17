@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha Aplicação</title>
+  <!-- Adicione o link para o Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 h-screen flex justify-center items-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg">
+    <div class="grid grid-cols-1 gap-4 items-center justify-center">
+      <!-- Quadrado para o logo -->
+      <div class="bg-blue-100 rounded-lg p-6 text-center">
+        <div class="w-72 h-32 bg-blue-100 flex items-center justify-center mx-auto mb-4">
+          <!-- Coloque o seu logotipo aqui -->
+          <img src="logo.jpg" alt="Logo" class="w-full h-full object-contain">
+        </div>
+      </div>
+
+      <!-- Quadrado para os botões -->
+      <div class="bg-gray-200 rounded-lg p-6 text-center">
+        <!-- Botões -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center justify-center">
+          <!-- Botão para cadastrar elemento -->
+          <div>
+            <a href="CadastrarProduto.html" class="block">
+              <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:bg-green-600 mb-4">
+                Cadastrar Elemento
+              </button>
+            </a>
+          </div>
+
+          <!-- Botão para cadastrar teste -->
+          <div>
+            <a href="CadastrarTestes.html" class="block">
+              <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:bg-yellow-600 mb-4">
+                Cadastrar Teste
+              </button>
+            </a>
+          </div>
+
+          <!-- Botão para consultar testes -->
+          <div>
+            <a href="Resultados.html" class="block">
+              <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:bg-pink-600 mb-4">
+                Consultar Testes
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
